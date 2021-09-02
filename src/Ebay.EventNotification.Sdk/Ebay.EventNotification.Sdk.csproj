@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+        <RootNamespace>Ebay.EventNotification.Sdk</RootNamespace>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- eBay.OAuth.Client not actively maintained so I forked internally Ebay.Oauth.Client -->
+        <!--        <PackageReference Include="eBay.OAuth.Client" Version="1.0.1" />       -->
+        <PackageReference Include="BouncyCastle" Version="1.8.9" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.8" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.8" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="3.1.18" />
+        <PackageReference Include="System.Net.Http.Json" Version="3.2.1" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="5.0.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0-preview.7.21377.19" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0-preview.7.21377.19" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0-preview.7.21377.19" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="6.0.0-preview.7.21377.19" />
+        <PackageReference Include="System.Net.Http.Json" Version="6.0.0-preview.7.21377.19" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Ebay.Oauth.Client\Ebay.Oauth.Client.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <RootNamespace>eBay.ApiClient.Auth.oAuth2</RootNamespace>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0"/>
+        <PackageReference Include="Moq" Version="4.16.1"/>
+        <PackageReference Include="xunit" Version="2.4.1"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1"/>
+        <PackageReference Include="Selenium.Chrome.WebDriver" Version="85.0.0"/>
+        <PackageReference Include="Selenium.WebDriver" Version="3.141.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="ebay-config-sample.yaml"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Ebay.Oauth.Client\Ebay.Oauth.Client.csproj"/>
+    </ItemGroup>
+
+</Project>
