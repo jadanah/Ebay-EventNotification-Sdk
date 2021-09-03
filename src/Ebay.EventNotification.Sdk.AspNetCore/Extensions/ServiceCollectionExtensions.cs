@@ -18,7 +18,12 @@ namespace Ebay.EventNotification.Sdk.AspNetCore.Extensions
 
             services.AddMemoryCache();
 
-            services.AddScoped<ISignatureValidator, SignatureValidator>();
+#if NET5_0_OR_GREATER
+            services.AddScoped<ISignatureValidator, DotnetSignatureValidator>();
+#else
+            services.AddScoped<ISignatureValidator, BouncyCastleSignatureValidator>();
+#endif
+            
             services.AddScoped<IEndPointValidator, EndpointValidator>();
             services.AddScoped<IPublicKeyCache, PublicKeyCache>();
             services.AddScoped<IEventNotificationConfig, EventNotificationConfig>();

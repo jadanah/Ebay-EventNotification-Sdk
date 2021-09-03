@@ -10,6 +10,7 @@ using Ebay.EventNotification.Sdk.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
 using Xunit;
 
@@ -27,12 +28,19 @@ namespace Ebay.EventNotification.Sdk.Tests
 
         private readonly Mock<IEventNotificationConfig> _configMock = new Mock<IEventNotificationConfig>();
 
-        private readonly Mock<ILogger<SignatureValidator>> _signatureLoggerMock = new Mock<ILogger<SignatureValidator>>();
+        
 
         public EventNotificationControllerTest()
         {
             IPublicKeyCache publicKeyCache = new PublicKeyCache(_publicKeyClientMock.Object, new MemoryCache(new MemoryCacheOptions()));
-            ISignatureValidator signatureValidator = new SignatureValidator(publicKeyCache, new MessageSerializer(), _signatureLoggerMock.Object);
+
+#if NET5_0_OR_GREATER
+            ISignatureValidator signatureValidator = new DotnetSignatureValidator(publicKeyCache, new MessageSerializer(),new NullLogger<DotnetSignatureValidator>() );
+#else
+            ISignatureValidator signatureValidator = new BouncyCastleSignatureValidator(publicKeyCache, new MessageSerializer(),new NullLogger<BouncyCastleSignatureValidator>() );
+#endif
+            
+            
             IEndPointValidator endpointValidator = new EndpointValidator(_configMock.Object);
 
             _publicKeyClientMock.Setup(x => x.GetPublicKeyAsync(It.IsAny<string>())).Returns(() => Task.FromResult(DataProvider.GetMockPublicKeyResponse()));

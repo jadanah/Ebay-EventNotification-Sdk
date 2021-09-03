@@ -22,12 +22,15 @@ namespace Ebay.EventNotification.Sdk.Tests.data
         }
 
         public static string GetMockMessageRaw() => JsonSerializer.Serialize(GetMockMessage(), new JsonSerializerOptions() { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+        
 
         public static Message GetMockTamperedMessage()
         {
             var message = File.ReadAllText(TamperedMessage);
             return JsonSerializer.Deserialize<Message>(message);
         }
+        
+        public static string GetMockTamperedMessageRaw() => JsonSerializer.Serialize(GetMockTamperedMessage(), new JsonSerializerOptions() { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
 
         public static PublicKey GetMockPublicKeyResponse()
         {
