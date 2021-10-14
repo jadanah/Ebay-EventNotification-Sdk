@@ -1,5 +1,9 @@
-﻿Event Notification SDK 
-==========
+# Event Notification SDK - Unofficial
+
+**Forked from https://github.com/eBay/eBay-Notification-SDK-Dot-Net-Core. I've made many changes from the original code for improved DI integration, async support, removing unrequired dependencies, .net naming conventions/code styles etc.**
+ 
+================================================================================
+
 With notifications, business moments are communicated to all interested listeners a.k.a. subscribers of those event streams. eBay's most recent notification payloads are also secured using ECC signature headers.  
 
 Event Notification DotNet SDK  is designed to simplify processing eBay notifications. The application receives subscribed messages, validates the integrity of the message using the X-EBAY-SIGNATURE header and delegates to a custom configurable MessageProcessor for plugging in usecase specific processing logic.
