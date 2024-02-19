@@ -13,7 +13,7 @@
  *  limitations under the License.
  *
  */
-
+using System.Configuration;
 using Microsoft.Extensions.Configuration;
 
 namespace Ebay.EventNotification.Sdk.Config
