@@ -51,12 +51,11 @@ namespace eBay.ApiClient.Auth.OAuth2
 
             //Initialize client
             var client = new RestClient
-            {
-                BaseUrl = new Uri(environment.ApiEndpoint())
+            {                 
             };
 
             //Create request
-            var request = new RestRequest(Method.POST);
+            var request = new RestRequest(new Uri(environment.ApiEndpoint()), Method.Post);
 
             //Add headers
             request.AddHeader(Constants.HEADER_AUTHORIZATION, OAuth2Util.CreateAuthorizationHeader(credentials));
@@ -84,7 +83,7 @@ namespace eBay.ApiClient.Auth.OAuth2
         }
 
 
-        private OAuthResponse HandleApiResponse(IRestResponse response, TokenType tokenType)
+        private OAuthResponse HandleApiResponse(RestResponse response, TokenType tokenType)
         {
             var oAuthResponse = new OAuthResponse();
             if (response.StatusCode != HttpStatusCode.OK)
